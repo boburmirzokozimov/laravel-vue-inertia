@@ -1,19 +1,20 @@
-<script setup>
+<script>
 import Layout from "@/Shared/Layout.vue";
 
-defineProps({
-    time: String
-})
+export default {
+    props: {
+        time: String
+    },
+    layout: Layout,
+}
 </script>
 
 <template>
-    <Layout>
-        <div>
-            <h1 class="text-3xl">
-                Home
-            </h1>
-        </div>
-    </Layout>
+    <div>
+        <h1 class="text-3xl">
+            Home
+        </h1>
+    </div>
 </template>
 
 <style scoped>
