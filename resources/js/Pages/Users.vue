@@ -1,15 +1,5 @@
-<script>
-import {Link} from '@inertiajs/vue3'
-import Nav from "@/Shared/Nav.vue";
+<script setup>
 import Layout from "@/Shared/Layout.vue";
-
-export default {
-    components: {
-        Layout,
-        Nav,
-        Link
-    }
-}
 </script>
 
 <template>
