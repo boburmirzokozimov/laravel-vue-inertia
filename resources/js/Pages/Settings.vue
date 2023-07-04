@@ -1,12 +1,7 @@
-<script>
-import Layout from "@/Shared/Layout.vue";
-
-export default {
-    layout: Layout
-}
-</script>
-
 <template>
+    <Head>
+        <title>Settings</title>
+    </Head>
     <div>
         <h1 class="text-3xl">
             Settings
@@ -17,3 +12,5 @@ export default {
 <style scoped>
 
 </style>
+<script setup>
+</script>

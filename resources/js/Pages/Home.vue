@@ -1,15 +1,19 @@
 <script>
-import Layout from "@/Shared/Layout.vue";
-
 export default {
     props: {
         time: String
     },
-    layout: Layout,
 }
 </script>
 
 <template>
+    <Head>
+        <title>Home</title>
+        <meta content="Information about home page"
+              head-key="description"
+              type="description"
+        >
+    </Head>
     <div>
         <h1 class="text-3xl">
             Home

@@ -1,8 +1,16 @@
 <script setup>
 import Nav from "@/Shared/Nav.vue";
+import {Head} from "@inertiajs/vue3";
 </script>
 
 <template>
+    <Head>
+        <title>My app</title>
+        <meta content="Information"
+              head-key="description"
+              type="description"
+        >
+    </Head>
     <section class="p-6 bg-gray-200">
         <header class="flex items-center justify-between">
             <div class="flex items-center">
