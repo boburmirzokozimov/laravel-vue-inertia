@@ -9,7 +9,7 @@
         </h1>
     </div>
 
-    <div class="w-full">
+    <div class="w-full mb-6">
         <div class="bg-white shadow-md rounded my-6">
             <table class="text-left w-full border-collapse">
                 <thead>
@@ -23,18 +23,31 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="user in users" :key="user.id" class="hover:bg-gray-200">
+                <tr v-for="user in users.data" :key="user.id" class="hover:bg-gray-200">
                     <td class="py-4 px-6 border-b border-grey-light">{{ user.name }}</td>
                     <td class="py-4 px-6 border-b border-grey-light">
-                        <Link :href="`users/${user.id}/edit`"
-                              class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark">
+                        <NavLink :href="`users/${user.id}/edit`"
+                        >
                             Edit
-                        </Link>
+                        </NavLink>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <div class="">
+        <ul>
+            <Component
+                :is="link.url ? 'Link':'span'"
+                v-for="link in users.links"
+                :class="link.url ? 'text-gray-500':'text-gray-200'"
+                :href="link.url"
+                class="px-1"
+                v-html="link.label"
+            />
+        </ul>
     </div>
 
 </template>
@@ -43,9 +56,9 @@
 
 </style>
 <script setup>
-import {Link} from "@inertiajs/vue3";
+import NavLink from "@/Shared/NavLink.vue";
 
 defineProps({
-    users: Array
+    users: Object
 })
 </script>
