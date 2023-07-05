@@ -3,10 +3,19 @@
         <title>Users</title>
     </Head>
 
-    <div class="mb-6">
+    <div class="mb-6 flex justify-between items-center">
         <h1 class="text-3xl">
             Users
         </h1>
+        <div>
+            <input
+                id="search"
+                v-model="search"
+                class="border rounded-2xl"
+                name="search"
+                placeholder="Search..."
+                type="text">
+        </div>
     </div>
 
     <div class="w-full mb-6">
@@ -37,28 +46,31 @@
         </div>
     </div>
 
-    <div class="">
-        <ul>
-            <Component
-                :is="link.url ? 'Link':'span'"
-                v-for="link in users.links"
-                :class="link.url ? 'text-gray-500':'text-gray-200'"
-                :href="link.url"
-                class="px-1"
-                v-html="link.label"
-            />
-        </ul>
+    <div>
+        <Paginator :links="users.links" class="mt-6"/>
     </div>
 
 </template>
 
-<style scoped>
-
-</style>
 <script setup>
 import NavLink from "@/Shared/NavLink.vue";
+import Paginator from "@/Shared/Paginator.vue";
+import {ref, watch} from "vue";
+import {router} from "@inertiajs/vue3";
 
 defineProps({
     users: Object
 })
+
+let search = ref('');
+
+watch(search, value => {
+    router.get(
+        '/users', {search: value}, {
+            preserveState: true,
+            replace: true,
+        }
+    )
+})
+
 </script>
