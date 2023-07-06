@@ -11,12 +11,13 @@ import {Head} from "@inertiajs/vue3";
               type="description"
         >
     </Head>
+    
     <section class="p-6 bg-gray-200">
         <header class="flex items-center justify-between">
             <div class="flex items-center">
                 <h1 class="font-bold text-lg mr-4">My app</h1>
                 <p>
-                    Welcome Back,{{ $page.props.auth.user }}
+                    Welcome Back, {{ $page.props.auth.user.name }}
                 </p>
             </div>
             <Nav/>

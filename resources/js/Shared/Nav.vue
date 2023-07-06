@@ -9,10 +9,13 @@ import NavLink from "@/Shared/NavLink.vue";
                 <NavLink :active="$page.component==='Home'" href="/">Home</NavLink>
             </li>
             <li>
-                <NavLink :active="$page.component==='Settings'" href="/settings">Settings</NavLink>
+                <NavLink :active="$page.component==='Orders'" href="/orders">Orders</NavLink>
             </li>
             <li>
                 <NavLink :active="$page.component==='Users'" href="/users">Users</NavLink>
+            </li>
+            <li>
+                <NavLink href="/logout" method="post">Log Out</NavLink>
             </li>
         </ul>
     </nav>

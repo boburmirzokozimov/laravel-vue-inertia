@@ -1,45 +1,25 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return Inertia::render('Home')->with(['time' => now()->toTimeString()]);
-});
+Route::get('/login', [LoginController::class, 'create'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::get('/users', function () {
-    return Inertia::render('Users')->with([
-        'users' => User::query()
-            ->when(Request::input('search'), function (Builder $query, string $search) {
-                $query->where('name', 'LIKE', '%' . $search . '%');
-            })
-            ->paginate(10)
-            ->withQueryString()
-            ->through(fn($user) => [
-                'name' => $user->name,
-                'id' => $user->id,
-            ])
-    ]);
-});
 
-Route::get('/settings', function () {
-    return Inertia::render('Settings');
-});
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('Home')->with(['time' => now()->toTimeString()]);
+    });
 
-Route::post('/logout', function () {
-    dd('Logging out ');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 });

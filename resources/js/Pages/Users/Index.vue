@@ -4,9 +4,18 @@
     </Head>
 
     <div class="mb-6 flex justify-between items-center">
-        <h1 class="text-3xl">
-            Users
-        </h1>
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl mr-6">
+                Users
+            </h1>
+
+            <div>
+                <Link v-if="can.createUser" class="bg-blue-600 p-2 rounded-xl text-white" href="/users/create">Create
+                </Link>
+            </div>
+        </div>
+
+
         <div>
             <input
                 id="search"
@@ -56,21 +65,24 @@
 import NavLink from "@/Shared/NavLink.vue";
 import Paginator from "@/Shared/Paginator.vue";
 import {ref, watch} from "vue";
-import {router} from "@inertiajs/vue3";
+import {Link, router} from "@inertiajs/vue3";
+import {debounce} from "lodash/function.js";
 
-defineProps({
-    users: Object
+const props = defineProps({
+    users: Object,
+    filters: Object,
+    can: Array
 })
 
-let search = ref('');
+let search = ref(props.filters.search);
 
-watch(search, value => {
+watch(search, debounce(function (value) {
     router.get(
         '/users', {search: value}, {
             preserveState: true,
             replace: true,
         }
     )
-})
+}, 500))
 
 </script>
