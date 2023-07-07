@@ -1,5 +1,6 @@
 <script setup>
 import {Head, useForm} from "@inertiajs/vue3";
+import Paginator from "@/Shared/Paginator.vue";
 
 defineProps({
     orders: Object,
@@ -41,7 +42,7 @@ let form = useForm({
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="order in orders" :key="order.id" class="">
+                <tr v-for="order in orders.data" :key="order.id" class="">
                     <td class="py-4 px-6 border-b border-grey-light">{{ order.user }}</td>
                     <td class="py-4 px-6 border-b border-grey-light">{{ order.gift }}</td>
                     <td class="py-4 px-6 border-b border-grey-light">Yunusabad</td>
@@ -64,6 +65,10 @@ let form = useForm({
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <div>
+        <Paginator :links="orders.links" class="mt-6"/>
     </div>
 
 </template>

@@ -15,9 +15,9 @@ class OrderController extends Controller
     {
         return Inertia::render('Orders/Index')->with([
             'orders' => Order::query()
-                ->orderByDesc('updated_at')
-                ->get()
-                ->map(fn($order) => [
+                ->orderBy('id')
+                ->paginate(10)
+                ->through(fn($order) => [
                     'id' => $order->id,
                     'user' => $order->user->name,
                     'gift' => $order->gift->name,
