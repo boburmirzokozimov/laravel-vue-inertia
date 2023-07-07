@@ -7,8 +7,6 @@ let form = useForm({
     password: "",
 })
 
-function submit() {
-}
 </script>
 
 <template>

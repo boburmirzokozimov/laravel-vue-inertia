@@ -1,14 +1,13 @@
 <script setup>
 import {Head, useForm} from "@inertiajs/vue3";
-import NavLink from "@/Shared/NavLink.vue";
 
-defineProps({
-    orders: Array,
+const props = defineProps({
+    order: Array,
     statuses: Array,
 })
 
 const form = useForm({
-    status: String,
+    status: props.order.status,
 })
 
 function change(e) {
@@ -37,24 +36,21 @@ function change(e) {
                     <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                         Status
                     </th>
-                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-                        Action
-                    </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="order in orders" :key="order.id" class="">
+                <tr>
                     <td class="py-4 px-6 border-b border-grey-light">{{ order.user }}</td>
                     <td class="py-4 px-6 border-b border-grey-light">{{ order.gift }}</td>
                     <td class="py-4 px-6 border-b border-grey-light">Yunusabad</td>
-                    <td class="py-4 px-6 border-b border-grey-light" v-text="order.status">
-                    </td>
-                    <td class="">
-                        <div class="ml-4">
-                            <NavLink :href="'/orders/'+order.id+'/edit'" class="bg-blue-500 p-2 rounded-xl text-white">
-                                Edit
-                            </NavLink>
-                        </div>
+                    <td class="py-4 px-6 border-b border-grey-light">
+                        <form action='' method="post" @change.prevent="form.patch('/orders/'+order.id)">
+                            <select id="status" v-model="form.status" class="border-gray-200 rounded" name="status">
+                                <option v-for="status in statuses"
+                                        :value="status"
+                                        v-text="status"></option>
+                            </select>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
