@@ -47,19 +47,17 @@ let form = useForm({
                     <td class="py-4 px-6 border-b border-grey-light">Yunusabad</td>
                     <td class="">
                         <div class="ml-4">
-                            <form action='' method="post">
-                                <select
-                                    id="status"
-                                    :value="order.status"
-                                    class="border-gray-200 rounded"
-                                    name="status"
-                                    @change="(e)=>changed(e,order.id)">
-                                    <option v-for="status in order.statuses"
-                                            :key="status"
-                                            :value="status"
-                                            v-text="status"></option>
-                                </select>
-                            </form>
+                            <select
+                                id="status"
+                                :value="order.status"
+                                class="border-gray-200 rounded"
+                                name="status"
+                                @change="(e)=>changed(e,order.id)">
+                                <option v-for="status in order.statuses"
+                                        :key="status"
+                                        :value="status"
+                                        v-text="status"></option>
+                            </select>
                         </div>
                     </td>
                 </tr>
