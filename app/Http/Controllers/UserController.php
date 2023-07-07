@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -15,7 +14,7 @@ class UserController extends Controller
     {
         return Inertia::render('Users/Index')->with([
             'users' => User::query()
-                ->when(Request::input('search'), function (Builder $query, string $search) {
+                ->when(Request::input('search'), function ($query, string $search) {
                     $query->where('name', 'LIKE', '%' . $search . '%');
                 })
                 ->latest()
