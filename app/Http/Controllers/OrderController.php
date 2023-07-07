@@ -22,14 +22,15 @@ class OrderController extends Controller
                     'user' => $order->user->name,
                     'gift' => $order->gift->name,
                     'status' => $order->status,
+                    'statuses' => [
+                        OrderStatus::NEW,
+                        OrderStatus::PROGRESS,
+                        OrderStatus::BRANCH,
+                        OrderStatus::GIVEN,
+                        OrderStatus::FINISHED,
+                    ]
                 ]),
-            'statuses' => [
-                OrderStatus::NEW,
-                OrderStatus::PROGRESS,
-                OrderStatus::BRANCH,
-                OrderStatus::GIVEN,
-                OrderStatus::FINISHED,
-            ]
+
         ]);
     }
 
