@@ -1,5 +1,5 @@
 <script setup>
-import {Head, useForm} from "@inertiajs/vue3";
+import {Head, Link, useForm} from "@inertiajs/vue3";
 
 const props = defineProps({
     order: Array,
@@ -19,6 +19,20 @@ function change(e) {
     <Head>
         <title>Orders</title>
     </Head>
+
+    <div class="mb-6 flex justify-between items-center">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl mr-6">
+                Order
+            </h1>
+
+            <div>
+                <Link class="bg-blue-600 p-2 rounded-xl text-white" href="/orders">Back
+                </Link>
+            </div>
+        </div>
+    </div>
+
     <div class="w-full mb-6">
         <div class="bg-white shadow-md rounded my-6">
             <table class="text-left w-full border-collapse">

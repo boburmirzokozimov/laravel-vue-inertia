@@ -14,12 +14,15 @@ class OrderController extends Controller
     public function index()
     {
         return Inertia::render('Orders/Index')->with([
-            'orders' => Order::all()->map(fn($order) => [
-                'id' => $order->id,
-                'user' => $order->user->name,
-                'gift' => $order->gift->name,
-                'status' => $order->status,
-            ]),
+            'orders' => Order::query()
+                ->orderByDesc('updated_at')
+                ->get()
+                ->map(fn($order) => [
+                    'id' => $order->id,
+                    'user' => $order->user->name,
+                    'gift' => $order->gift->name,
+                    'status' => $order->status,
+                ]),
             'statuses' => [
                 OrderStatus::NEW,
                 OrderStatus::PROGRESS,

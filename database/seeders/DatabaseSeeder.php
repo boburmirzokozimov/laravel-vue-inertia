@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Gift;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -21,5 +22,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Gift::factory(20)->create();
+
+        Order::factory(20)->create();
     }
 }
