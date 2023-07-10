@@ -10,12 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('gift_id');
-            $table->enum('status', ['new', 'in progress', 'in branch', 'given', 'finished'])->default('new');
+            $table->string('name');
+            $table->unsignedInteger('branch_id');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('teachers');
     }
 };

@@ -11,7 +11,7 @@ import {Head} from "@inertiajs/vue3";
               type="description"
         >
     </Head>
-    
+
     <section class="p-6 bg-gray-200">
         <header class="flex items-center justify-between">
             <div class="flex items-center">
@@ -25,7 +25,7 @@ import {Head} from "@inertiajs/vue3";
     </section>
 
     <section class="p-6">
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-4xl mx-auto">
             <slot/>
         </div>
     </section>

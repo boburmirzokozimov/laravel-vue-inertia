@@ -33,7 +33,7 @@ let form = useForm({
                     <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                         Gift Type
                     </th>
-                    <th>
+                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
                         Branch
                     </th>
                     <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
@@ -46,7 +46,7 @@ let form = useForm({
                     <td class="py-4 px-6 border-b border-grey-light">{{ order.user }}</td>
                     <td class="py-4 px-6 border-b border-grey-light">{{ order.gift }}</td>
                     <td class="py-4 px-6 border-b border-grey-light">Yunusabad</td>
-                    <td class="">
+                    <td class="py-4 px-6 border-b border-grey-light">
                         <div class="ml-4">
                             <select
                                 id="status"
